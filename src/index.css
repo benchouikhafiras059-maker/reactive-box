@@ -1,37 +1,32 @@
 /* ── FF DIN for PUMA — official brand typeface ── */
 @font-face {
-  font-family: 'FFDINforPUMA';
+  font-family: 'FFDIN';
   src: url('/fonts/FFDINforPUMA-Light.ttf') format('truetype');
   font-weight: 300;
-  font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'FFDINforPUMA';
+  font-family: 'FFDIN';
   src: url('/fonts/FFDINforPUMA-Regular.ttf') format('truetype');
   font-weight: 400;
-  font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'FFDINforPUMA';
+  font-family: 'FFDIN';
   src: url('/fonts/FFDINforPUMA-Bold.ttf') format('truetype');
   font-weight: 700;
-  font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'FFDINforPUMA';
+  font-family: 'FFDIN';
   src: url('/fonts/FFDINforPUMA-Black.ttf') format('truetype');
   font-weight: 900;
-  font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'FFDINforPUMACondensed';
+  font-family: 'FFDINCond';
   src: url('/fonts/FFDINforPUMA-CondBold.ttf') format('truetype');
   font-weight: 700;
-  font-style: normal;
   font-display: swap;
 }
 
@@ -42,58 +37,44 @@
 }
 
 :root {
-  /* ── Official PUMA Brand Colors ─────────────────── */
-  --puma-red:      #AF1E2D;   /* Primary brand red */
-  --puma-black:    #000000;   /* PUMA Black */
-  --puma-white:    #FFFFFF;   /* PUMA White */
-  --puma-green:    #1A5C2E;   /* Sportstyle only */
+  /* ── Official PUMA Brand Colors ── */
+  --R: #AF1E2D;          /* PUMA Red     */
+  --B: #000000;          /* PUMA Black   */
+  --W: #FFFFFF;          /* PUMA White   */
+  --G: #1A5C2E;          /* PUMA Green (Sportstyle) */
 
-  /* ── Secondary — Neutral Cool Grays ─────────────── */
-  --cool-gray-9:   #76767A;
-  --cool-gray-7:   #97999B;
-  --cool-gray-3:   #C8C9C7;
-  --cool-gray-1:   #D9D9D6;
+  /* ── PUMA Cool Grays ── */
+  --CG9: #76767A;
+  --CG7: #97999B;
+  --CG3: #C8C9C7;
+  --CG1: #D9D9D6;
 
-  /* ── UI surface tokens ───────────────────────────── */
-  --surface:       #111111;
-  --surface-2:     #1a1a1a;
-  --border:        rgba(255, 255, 255, 0.07);
-  --border-mid:    rgba(255, 255, 255, 0.13);
+  /* ── UI tokens ── */
+  --bg:          #FFFFFF;
+  --bg-soft:     #F5F5F5;
+  --surface:     #FFFFFF;
+  --border:      #E8E8E8;
+  --border-dark: #D0D0D0;
 
-  --red-glow:      rgba(175, 30, 45, 0.30);
-  --red-dim:       rgba(175, 30, 45, 0.08);
+  --text:        #000000;
+  --text-mid:    #555555;
+  --text-dim:    #999999;
 
-  --text-primary:   #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.50);
-  --text-muted:     rgba(255, 255, 255, 0.28);
+  --red-glow:    rgba(175, 30, 45, 0.18);
 
-  /* ── Official PUMA typography ────────────────────── */
-  --font-display:  'FFDINforPUMACondensed', 'Arial Narrow', sans-serif;
-  --font-body:     'FFDINforPUMA', 'Arial', sans-serif;
+  /* ── Typography ── */
+  --f-display: 'FFDINCond', 'Arial Narrow', sans-serif;
+  --f-body:    'FFDIN', 'Arial', sans-serif;
 
-  font-family: var(--font-body);
+  font-family: var(--f-body);
   font-size: 14px;
   line-height: 1.5;
-  color: var(--text-primary);
-  background: var(--puma-black);
+  color: var(--text);
+  background: var(--W);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  min-height: 100vh;
-  background: var(--puma-black);
-}
-
-#root {
-  min-height: 100vh;
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-family: inherit;
-}
-
+body { min-height: 100vh; background: var(--W); }
+#root { min-height: 100vh; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
 ul { list-style: none; }

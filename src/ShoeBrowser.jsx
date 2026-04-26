@@ -1,69 +1,57 @@
 // ─────────────────────────────────────────────────────────
-// ShoeBrowser — the sneaker wall / collection panel.
+// ShoeBrowser — the floating product constellation.
 //
-// READS:  shoes (filtered + sorted list, passed from App)
-//         selectedShoeId (which tile to highlight)
-// WRITES: fires onSelectShoe(id) to App on click
+// READS:  shoes (filtered + sorted list from App)
+//         selectedShoeId (which tile is selected)
+// WRITES: fires onSelectShoe(id) up to App on click
 //
 // ── HOVER vs. SELECTION ───────────────────────────────────
-// HOVER  → purely CSS: transform, scale, shadow, brightness.
-//          Zero React state involved. This is a visual-only
-//          enhancement so the user feels the interface is
-//          physical and responsive.
+// HOVER  → pure CSS only. transform scale + shadow.
+//          Zero React state is read or written.
+//          The browser paints this with :hover selectors.
 //
 // CLICK  → fires onSelectShoe(id) up to App.jsx.
 //          App updates selectedShoeId in shared state.
-//          The new selectedShoeId flows back DOWN as a prop,
-//          causing this component to re-render and apply
-//          the --selected class to the correct tile.
-//          ShoeDetail also re-renders because App resolves
-//          the full shoe object and passes it down.
+//          The new id flows back DOWN as a prop.
+//          This component re-renders, applying --selected
+//          to the right tile. ShoeDetail also re-renders
+//          because App passes it the resolved shoe object.
 //
-// No child component stores its own copy of the selection.
+// No child manages its own copy of the selection.
 // ─────────────────────────────────────────────────────────
 
-// Per-shoe visual identity — gradient, accent, pattern
-const SHOE_THEME = {
+// Per-shoe visual identity — each tile has its own gradient + accent
+const SHOE_STYLE = {
   'shoe-1': {
-    // Speedcat OG — Motorsport heritage. PUMA Red as the hero accent.
-    gradient: 'linear-gradient(150deg, #0e0e0e 0%, #200508 55%, #0a0a0a 100%)',
-    accent: '#AF1E2D',   // official PUMA Red
+    gradient: 'linear-gradient(145deg, #AF1E2D 0%, #6b0d15 60%, #1a0305 100%)',
+    accent: '#AF1E2D',
     label: 'Motorsport',
-    pattern: 'motorsport',
+    tag: 'Heritage',
   },
   'shoe-2': {
-    // MB.04 — Basketball. Cool Gray 7C as base, deep blue hero.
-    gradient: 'linear-gradient(150deg, #04040f 0%, #081428 55%, #050510 100%)',
-    accent: '#97999B',   // Cool Gray 7C — neutral contrast on dark
+    gradient: 'linear-gradient(145deg, #0a1628 0%, #1a2840 60%, #070e1c 100%)',
+    accent: '#97999B',
     label: 'Basketball',
-    pattern: 'court',
+    tag: 'Performance',
   },
   'shoe-3': {
-    // Deviate NITRO 3 — Running. PUMA Green (Sportstyle) as accent.
-    gradient: 'linear-gradient(150deg, #040f04 0%, #091a09 55%, #050d05 100%)',
-    accent: '#1A5C2E',   // official PUMA Green (Sportstyle)
+    gradient: 'linear-gradient(145deg, #1A5C2E 0%, #0e3319 60%, #050f08 100%)',
+    accent: '#1A5C2E',
     label: 'Running',
-    pattern: 'speed',
+    tag: 'NITRO',
   },
   'shoe-4': {
-    // Palermo — Streetwear. Cool Gray 3C — warm and understated.
-    gradient: 'linear-gradient(150deg, #0f0d09 0%, #1c170d 55%, #0c0a07 100%)',
-    accent: '#C8C9C7',   // Cool Gray 3C
+    gradient: 'linear-gradient(145deg, #1c1c1c 0%, #2a2010 60%, #0f0f0f 100%)',
+    accent: '#C8C9C7',
     label: 'Streetwear',
-    pattern: 'terrace',
+    tag: 'Terrace',
   },
-}
-
-// Split shoe name into display lines for large typography
-function splitName(name) {
-  const parts = name.split(' ')
-  if (parts.length === 1) return [name]
-  if (parts.length === 2) return parts
-  // For 3+ word names keep first word alone
-  return [parts[0], parts.slice(1).join(' ')]
 }
 
 export default function ShoeBrowser({ shoes, selectedShoeId, onSelectShoe }) {
+  // Find selected shoe name for the headline (computed from props — not stored as state)
+  const activeName = shoes.find(s => s.id === selectedShoeId)?.name || 'Footwear'
+
   if (shoes.length === 0) {
     return (
       <div className="browser-empty">
@@ -74,84 +62,77 @@ export default function ShoeBrowser({ shoes, selectedShoeId, onSelectShoe }) {
 
   return (
     <div className="browser">
-      <div className="browser-header">
-        <span className="browser-header__label">Collection</span>
-        <span className="browser-header__count">{shoes.length} styles</span>
+
+      {/* ── Stage headline ── */}
+      <div className="browser-headline">
+        <span className="browser-headline__eyebrow">Explore PUMA</span>
+        <h1 className="browser-headline__name">{activeName}</h1>
+        <span className="browser-headline__count">{shoes.length} styles</span>
       </div>
 
-      <div className="browser-grid">
-        {shoes.map(shoe => {
+      {/* ── Constellation grid ────────────────────────────
+          Tiles stagger vertically on even positions to
+          create an organic, non-grid-like layout.
+          Hover zoom is CSS-only. Click drives state.
+      ─────────────────────────────────────────────────── */}
+      <div className="browser-constellation">
+        {shoes.map((shoe, index) => {
           const isSelected = shoe.id === selectedShoeId
-          const theme = SHOE_THEME[shoe.id] || SHOE_THEME['shoe-1']
-          const nameParts = splitName(shoe.name)
+          const style = SHOE_STYLE[shoe.id] || SHOE_STYLE['shoe-1']
 
           return (
             <button
               key={shoe.id}
               className={`shoe-tile ${isSelected ? 'shoe-tile--selected' : ''}`}
+              style={{ '--tile-accent': style.accent }}
               onClick={() => onSelectShoe(shoe.id)}
               aria-pressed={isSelected}
+              data-index={index}
             >
-              {/* ──────────────────────────────────────────
-                  VISUAL HERO AREA
-                  Hover scale is CSS-only (see App.css).
-                  The gradient and accent are unique per shoe.
-              ────────────────────────────────────────── */}
+              {/* ── Visual hero ───────────────────────────
+                  The zoom on hover is CSS transform only.
+                  No React state is involved in hover.
+              ─────────────────────────────────────────── */}
               <div
                 className="shoe-tile__visual"
-                style={{ background: theme.gradient }}
-                data-pattern={theme.pattern}
+                style={{ background: style.gradient }}
               >
-                {/* Subtle texture overlay — CSS handled */}
-                <div className="shoe-tile__texture" data-pattern={theme.pattern} />
+                {/* Category tag */}
+                <span className="shoe-tile__tag">{style.tag}</span>
 
-                {/* Category pill */}
-                <span
-                  className="shoe-tile__badge"
-                  style={{ color: theme.accent, borderColor: theme.accent + '40' }}
-                >
-                  {shoe.category}
-                </span>
-
-                {/* Large display name — the shoe IS the visual */}
-                <div className="shoe-tile__name-display">
-                  {nameParts.map((part, i) => (
+                {/* Hero shoe name — huge condensed display type */}
+                <div className="shoe-tile__name-block">
+                  {shoe.name.split(' ').map((word, i) => (
                     <span
                       key={i}
-                      className={i === 0 ? 'shoe-tile__name-main' : 'shoe-tile__name-sub'}
-                      style={i === 0 ? { color: theme.accent } : {}}
+                      className={i === 0 ? 'shoe-tile__name-large' : 'shoe-tile__name-small'}
                     >
-                      {part}
+                      {word}
                     </span>
                   ))}
                 </div>
 
-                {/* Sport tag — bottom left */}
-                <span className="shoe-tile__sport">{theme.label}</span>
+                {/* Price — top right */}
+                <span className="shoe-tile__price-badge">${shoe.price}</span>
 
-                {/* Price — bottom right */}
-                <span className="shoe-tile__price-overlay">${shoe.price}</span>
-
-                {/* Selected tint overlay */}
-                {isSelected && <div className="shoe-tile__selected-tint" />}
+                {/* Selected shimmer overlay */}
+                {isSelected && <div className="shoe-tile__selected-overlay" />}
               </div>
 
-              {/* ── Bottom info strip ── */}
-              <div className="shoe-tile__strip">
-                <div className="shoe-tile__strip-info">
-                  <span className="shoe-tile__strip-name">{shoe.name}</span>
-                  <span className="shoe-tile__strip-colorway">{shoe.colorway}</span>
+              {/* ── Info strip ── */}
+              <div className="shoe-tile__info">
+                <div>
+                  <p className="shoe-tile__info-category">{shoe.category} · {style.label}</p>
+                  <p className="shoe-tile__info-name">{shoe.name}</p>
+                  <p className="shoe-tile__info-colorway">{shoe.colorway}</p>
                 </div>
-                <span
-                  className="shoe-tile__strip-arrow"
-                  style={isSelected ? { color: 'var(--red)' } : {}}
-                >
+                <span className="shoe-tile__info-arrow">
                   {isSelected ? '●' : '→'}
                 </span>
               </div>
 
-              {/* Red bottom bar — only on selected */}
-              {isSelected && <div className="shoe-tile__selected-bar" />}
+              {/* Selected bottom bar */}
+              {isSelected && <div className="shoe-tile__bar" />}
             </button>
           )
         })}

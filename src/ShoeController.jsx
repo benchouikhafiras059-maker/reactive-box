@@ -2,10 +2,10 @@
 // ShoeController — filter and sort panel.
 //
 // READS:  filterCategory, sortBy from App (via props)
-// WRITES: fires callbacks up to App on every interaction
+// WRITES: fires callbacks up to App on interaction
 //
-// App is the decision-maker. This component only reports
-// what the user did. It never updates state directly.
+// This component never updates state itself. It reports
+// user actions upward. App.jsx is the decision-maker.
 // ─────────────────────────────────────────────────────────
 
 const CATEGORIES = [
@@ -22,61 +22,51 @@ const SORT_OPTIONS = [
 ]
 
 export default function ShoeController({
-  filterCategory,
-  sortBy,
-  onFilterChange,
-  onSortChange,
-  onReset,
+  filterCategory, sortBy,
+  onFilterChange, onSortChange, onReset,
 }) {
   return (
-    <div className="controller">
+    <div className="ctrl">
 
-      {/* Brand lockup */}
-      <div className="controller__brand">
-        <span className="controller__brand-name">PUMA</span>
-        <span className="controller__brand-sub">Shoe Explorer</span>
+      <div className="ctrl__brand">
+        <span className="ctrl__brand-name">PUMA</span>
+        <span className="ctrl__brand-sub">Shoe Explorer</span>
       </div>
 
-      {/* Category */}
-      <div className="controller__group">
-        <span className="controller__group-label">Category</span>
-        <div className="controller__options">
-          {CATEGORIES.map(cat => (
+      <div className="ctrl__group">
+        <span className="ctrl__group-label">Category</span>
+        <div className="ctrl__options">
+          {CATEGORIES.map(c => (
             <button
-              key={cat.value}
-              className={`ctrl-btn ${filterCategory === cat.value ? 'ctrl-btn--active' : ''}`}
-              onClick={() => onFilterChange(cat.value)}
+              key={c.value}
+              className={`ctrl-btn ${filterCategory === c.value ? 'ctrl-btn--on' : ''}`}
+              onClick={() => onFilterChange(c.value)}
             >
-              {cat.label}
+              {c.label}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Sort */}
-      <div className="controller__group">
-        <span className="controller__group-label">Sort by</span>
-        <div className="controller__options">
-          {SORT_OPTIONS.map(opt => (
+      <div className="ctrl__group">
+        <span className="ctrl__group-label">Sort</span>
+        <div className="ctrl__options">
+          {SORT_OPTIONS.map(o => (
             <button
-              key={opt.value}
-              className={`ctrl-btn ${sortBy === opt.value ? 'ctrl-btn--active' : ''}`}
-              onClick={() => onSortChange(opt.value)}
+              key={o.value}
+              className={`ctrl-btn ${sortBy === o.value ? 'ctrl-btn--on' : ''}`}
+              onClick={() => onSortChange(o.value)}
             >
-              {opt.label}
+              {o.label}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Reset */}
-      <button className="ctrl-reset" onClick={onReset}>
-        Reset
-      </button>
+      <button className="ctrl-reset" onClick={onReset}>Reset</button>
 
-      {/* State architecture note */}
-      <div className="controller__note">
-        <p>State lives in App.jsx.<br />Props down · Events up.</p>
+      <div className="ctrl__note">
+        <p>State lives in App.jsx<br />Props down · Events up</p>
       </div>
 
     </div>

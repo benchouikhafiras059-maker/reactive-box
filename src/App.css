@@ -1,23 +1,23 @@
 /* ═══════════════════════════════════════════════════════
-   APP SHELL
+   APP SHELL — white background, black sidebar
 ═══════════════════════════════════════════════════════ */
 
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: var(--black);
+  background: var(--W);
 }
 
-/* ── Header ─────────────────────────────────────────── */
+/* ── Header — thin top bar ── */
 
 .app-header {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   padding: 0 28px;
-  height: 44px;
-  background: var(--black);
+  height: 40px;
+  background: var(--W);
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
@@ -26,20 +26,20 @@
 }
 
 .app-header__title {
-  font-family: var(--font-body);
+  font-family: var(--f-body);
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-dim);
 }
 
-/* ── Three-panel layout ─────────────────────────────── */
+/* ── Three-panel layout ── */
 
 .app-layout {
   display: grid;
-  grid-template-columns: 210px 1fr 300px;
-  height: calc(100vh - 44px);
+  grid-template-columns: 200px 1fr 290px;
+  height: calc(100vh - 40px);
   overflow: hidden;
 }
 
@@ -47,481 +47,418 @@
   overflow-y: auto;
   height: 100%;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.08) transparent;
 }
 
-.panel--controller {
-  background: var(--off-black);
-  border-right: 1px solid var(--border);
-}
-
-.panel--browser {
-  background: var(--black);
-}
-
-.panel--detail {
-  background: var(--off-black);
-  border-left: 1px solid var(--border);
-}
+.panel--controller { background: var(--B); border-right: none; }
+.panel--browser    { background: var(--bg-soft); }
+.panel--detail     { background: var(--W); border-left: 1px solid var(--border); }
 
 /* ═══════════════════════════════════════════════════════
-   CONTROLLER PANEL
+   CONTROLLER — black sidebar, PUMA brand
 ═══════════════════════════════════════════════════════ */
 
-.controller {
-  padding: 0;
+.ctrl {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  padding: 0;
 }
 
-/* ── Brand block ── */
-
-.controller__brand {
-  padding: 28px 24px 24px;
-  border-bottom: 1px solid var(--border);
+/* Brand block */
+.ctrl__brand {
+  padding: 28px 22px 22px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-.controller__brand-name {
+.ctrl__brand-name {
   display: block;
-  font-family: var(--font-display);
-  font-size: 36px;
-  font-weight: 900;
+  font-family: var(--f-display);
+  font-size: 38px;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--white);
+  color: var(--W);
   line-height: 1;
 }
 
-.controller__brand-sub {
+.ctrl__brand-sub {
   display: block;
-  font-family: var(--font-body);
+  font-family: var(--f-body);
   font-size: 9px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--puma-red);
-  margin-top: 6px;
+  color: var(--R);
+  margin-top: 5px;
 }
 
-/* ── Filter groups ── */
-
-.controller__group {
-  padding: 24px 24px 0;
+/* Filter groups */
+.ctrl__group {
+  padding: 22px 22px 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.controller__group-label {
+.ctrl__group-label {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: rgba(255,255,255,0.28);
 }
 
-.controller__options {
+.ctrl__options {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
 }
 
-/* ── Control buttons ── */
-
+/* Filter buttons */
 .ctrl-btn {
   width: 100%;
   text-align: left;
   padding: 9px 12px;
-  border-radius: 3px;
-  font-family: var(--font-body);
+  border-radius: 2px;
+  font-family: var(--f-body);
   font-size: 13px;
-  font-weight: 500;
-  color: var(--text-secondary);
+  font-weight: 400;
+  color: rgba(255,255,255,0.50);
   background: transparent;
   border: 1px solid transparent;
-  transition: color 0.15s, background 0.15s, border-color 0.15s;
+  transition: color 0.14s, background 0.14s;
   letter-spacing: 0.01em;
-}
-
-.ctrl-btn:hover {
-  color: var(--white);
-  background: rgba(255,255,255,0.04);
-}
-
-.ctrl-btn--active {
-  color: var(--white);
-  font-weight: 700;
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.10);
   position: relative;
 }
 
-.ctrl-btn--active::before {
+.ctrl-btn:hover { color: var(--W); background: rgba(255,255,255,0.05); }
+
+.ctrl-btn--on {
+  color: var(--W);
+  font-weight: 700;
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.10);
+}
+
+.ctrl-btn--on::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 0; top: 20%; bottom: 20%;
   width: 2px;
-  height: 60%;
-  background: var(--puma-red);
+  background: var(--R);
   border-radius: 0 2px 2px 0;
 }
 
-/* ── Reset ── */
-
+/* Reset */
 .ctrl-reset {
-  margin: 24px 24px 0;
-  padding: 10px 12px;
-  border-radius: 3px;
-  font-family: var(--font-body);
+  margin: 22px 22px 0;
+  padding: 10px;
+  border-radius: 2px;
+  font-family: var(--f-body);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  border: 1px solid var(--border);
-  background: transparent;
-  transition: color 0.15s, border-color 0.15s;
+  color: rgba(255,255,255,0.28);
+  border: 1px solid rgba(255,255,255,0.08);
   text-align: center;
+  transition: color 0.14s, border-color 0.14s;
 }
 
-.ctrl-reset:hover {
-  color: var(--white);
-  border-color: var(--border-mid);
-}
+.ctrl-reset:hover { color: var(--W); border-color: rgba(255,255,255,0.20); }
 
-/* ── Architecture note ── */
-
-.controller__note {
+/* State note */
+.ctrl__note {
   margin-top: auto;
-  padding: 20px 24px;
-  border-top: 1px solid var(--border);
+  padding: 20px 22px;
+  border-top: 1px solid rgba(255,255,255,0.06);
 }
 
-.controller__note p {
+.ctrl__note p {
   font-size: 10px;
   line-height: 1.7;
-  color: var(--text-muted);
-  letter-spacing: 0.01em;
+  color: rgba(255,255,255,0.18);
 }
 
 /* ═══════════════════════════════════════════════════════
-   BROWSER PANEL — SNEAKER WALL
+   BROWSER — floating product constellation
 ═══════════════════════════════════════════════════════ */
 
 .browser {
-  padding: 28px 24px;
-}
-
-.browser-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.browser-header__label {
-  font-family: var(--font-body);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.browser-header__count {
-  font-size: 11px;
-  color: var(--text-muted);
+  padding: 36px 28px 48px;
 }
 
 .browser-empty {
-  padding: 60px 24px;
-  color: var(--text-secondary);
+  padding: 60px 28px;
+  color: var(--text-dim);
   font-size: 14px;
 }
 
-/* ── Tile grid ── */
+/* ── Stage headline ── */
 
-.browser-grid {
+.browser-headline {
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.browser-headline__eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.browser-headline__name {
+  font-family: var(--f-display);
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--B);
+  line-height: 0.95;
+}
+
+.browser-headline__count {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+/* ── Constellation grid ──────────────────────────────────
+   Even-indexed tiles are pushed down by 80px, creating
+   a staggered organic layout rather than a flat grid.
+   This is a pure CSS offset — no JS or state involved.
+─────────────────────────────────────────────────────── */
+
+.browser-constellation {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
 }
 
 /* ═══════════════════════════════════════════════════════
    SHOE TILE
-   ─ Hover: CSS-only visual (scale, lift, shadow)
-   ─ Click: fires onSelectShoe(id) → App updates state
+   ─ HOVER: CSS transform only — no React state
+   ─ CLICK: fires onSelectShoe(id) → App updates state
+   ─ --selected: applied via props from App
 ═══════════════════════════════════════════════════════ */
 
 .shoe-tile {
   position: relative;
   display: flex;
   flex-direction: column;
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
   text-align: left;
-  border: 1px solid var(--border);
-  background: var(--surface);
+  border: 1.5px solid var(--border);
+  background: var(--W);
   cursor: pointer;
 
-  /* ── HOVER is CSS only — no React state ── */
+  /* Stagger even tiles down — constellation feel */
+  transform-origin: center bottom;
+}
+
+/* Odd tiles: normal position */
+.shoe-tile:nth-child(odd) { margin-top: 0; }
+
+/* Even tiles: pushed down to create the floating organic layout */
+.shoe-tile:nth-child(even) { margin-top: 72px; }
+
+/* ── HOVER — pure CSS, zero React state ── */
+.shoe-tile {
   transition:
-    transform 0.24s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    box-shadow 0.24s ease,
+    transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.26s ease,
     border-color 0.18s ease;
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.08),
+    0 1px 3px rgba(0,0,0,0.05);
 }
 
 .shoe-tile:hover {
-  /* Lifts the card — purely cosmetic */
-  transform: translateY(-6px);
+  /* CSS-only lift and zoom — no state change */
+  transform: translateY(-8px) scale(1.01);
   box-shadow:
-    0 24px 48px rgba(0, 0, 0, 0.7),
-    0 8px 16px rgba(0, 0, 0, 0.4);
-  border-color: rgba(255,255,255,0.16);
-  z-index: 2;
+    0 24px 48px rgba(0,0,0,0.14),
+    0 8px 16px rgba(0,0,0,0.08);
+  border-color: var(--border-dark);
+  z-index: 5;
 }
 
-/* ── Selected state — driven by React props from App ── */
+/* ── SELECTED — driven by React state from App.jsx ── */
 .shoe-tile--selected {
-  border-color: var(--puma-red);
+  border-color: var(--R);
   box-shadow:
-    0 0 0 1px var(--puma-red),
-    0 0 32px var(--red-glow);
+    0 0 0 1px var(--R),
+    0 8px 24px rgba(175,30,45,0.15);
 }
 
 .shoe-tile--selected:hover {
   box-shadow:
-    0 0 0 1px var(--puma-red),
-    0 24px 48px rgba(0, 0, 0, 0.7),
-    0 0 48px var(--red-glow);
+    0 0 0 1px var(--R),
+    0 24px 48px rgba(175,30,45,0.22),
+    0 8px 16px rgba(0,0,0,0.10);
 }
 
-/* ── Visual hero ── */
+/* ── Visual hero area ── */
 
 .shoe-tile__visual {
   position: relative;
-  height: 300px;
+  height: 260px;
   overflow: hidden;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 20px;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Subtle texture overlays per category */
-.shoe-tile__texture {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.shoe-tile__texture[data-pattern="motorsport"] {
-  /* Diagonal racing stripes */
-  background: repeating-linear-gradient(
-    -52deg,
-    transparent 0px,
-    transparent 38px,
-    rgba(255,255,255,0.018) 38px,
-    rgba(255,255,255,0.018) 40px
-  );
-}
-
-.shoe-tile__texture[data-pattern="court"] {
-  /* Court horizontal lines — Cool Gray 7C tint */
-  background: repeating-linear-gradient(
-    0deg,
-    transparent 0px,
-    transparent 28px,
-    rgba(151,153,155,0.05) 28px,
-    rgba(151,153,155,0.05) 29px
-  );
-}
-
-.shoe-tile__texture[data-pattern="speed"] {
-  /* Speed diagonal lines — PUMA Green tint */
-  background: repeating-linear-gradient(
-    65deg,
-    transparent 0px,
-    transparent 18px,
-    rgba(26,92,46,0.08) 18px,
-    rgba(26,92,46,0.08) 19px
-  );
-}
-
-.shoe-tile__texture[data-pattern="terrace"] {
-  /* Terrace dot grid */
-  background: radial-gradient(circle, rgba(217,201,168,0.07) 1px, transparent 1px) 0 0 / 18px 18px;
-}
-
-/* ── Category badge ── */
-
-.shoe-tile__badge {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  font-family: var(--font-body);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 2px;
-  border: 1px solid currentColor;
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(4px);
-}
-
-/* ── Large display name — the shoe IS the visual ──────
-   This scales on hover via CSS only. No state.
-─────────────────────────────────────────────────────── */
-
-.shoe-tile__name-display {
+/* Hero shoe name zooms on hover — CSS only ── */
+.shoe-tile__name-block {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 0;
-  position: absolute;
-  inset: 0;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 20px 22px;
+  padding: 20px;
   pointer-events: none;
 
-  /* Hover scale — CSS only, no React state */
-  transition: transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* The scale on hover is CSS only — no state */
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.shoe-tile:hover .shoe-tile__name-display {
-  transform: scale(1.05) translateY(-4px);
+.shoe-tile:hover .shoe-tile__name-block {
+  transform: scale(1.08);
 }
 
-.shoe-tile__name-main {
+.shoe-tile__name-large {
   display: block;
-  font-family: var(--font-display);
-  font-size: clamp(44px, 7vw, 68px);
-  font-weight: 900;
-  line-height: 0.9;
+  font-family: var(--f-display);
+  font-size: clamp(50px, 7vw, 80px);
+  font-weight: 700;
+  line-height: 0.88;
   letter-spacing: -0.01em;
   text-transform: uppercase;
-  /* color set inline per shoe */
+  color: rgba(255,255,255,0.95);
 }
 
-.shoe-tile__name-sub {
+.shoe-tile__name-small {
   display: block;
-  font-family: var(--font-display);
+  font-family: var(--f-display);
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 700;
   line-height: 1;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.45);
 }
 
-/* ── Sport tag ── */
-
-.shoe-tile__sport {
+/* Tag — top left */
+.shoe-tile__tag {
   position: absolute;
-  bottom: 58px;
-  left: 20px;
+  top: 14px;
+  left: 14px;
+  font-family: var(--f-body);
   font-size: 9px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.55);
+  background: rgba(0,0,0,0.25);
+  padding: 4px 9px;
+  border-radius: 2px;
 }
 
-/* ── Price overlay ── */
-
-.shoe-tile__price-overlay {
+/* Price — top right */
+.shoe-tile__price-badge {
   position: absolute;
-  bottom: 58px;
-  right: 20px;
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 800;
-  color: rgba(255,255,255,0.75);
+  top: 14px;
+  right: 14px;
+  font-family: var(--f-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.80);
   letter-spacing: -0.01em;
 }
 
-/* ── Selected tint ── */
-
-.shoe-tile__selected-tint {
+/* Selected tint */
+.shoe-tile__selected-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(255, 58, 0, 0.05);
+  background: rgba(175,30,45,0.07);
   pointer-events: none;
 }
 
-/* ── Bottom gradient fade within visual ── */
+/* Bottom gradient within visual */
 .shoe-tile__visual::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5));
+  bottom: 0; left: 0; right: 0;
+  height: 56px;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.35));
   pointer-events: none;
 }
 
-/* ── Info strip ── */
+/* ── Info strip — white, black text ── */
 
-.shoe-tile__strip {
+.shoe-tile__info {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 18px;
-  background: var(--surface);
+  padding: 14px 16px;
+  background: var(--W);
   border-top: 1px solid var(--border);
-  flex-shrink: 0;
 }
 
-.shoe-tile--selected .shoe-tile__strip {
-  background: rgba(255,58,0,0.05);
+.shoe-tile--selected .shoe-tile__info {
+  background: #fdf5f5;
 }
 
-.shoe-tile__strip-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.shoe-tile__strip-name {
-  font-family: var(--font-body);
-  font-size: 13px;
+.shoe-tile__info-category {
+  font-size: 9px;
   font-weight: 700;
-  color: var(--white);
-  letter-spacing: 0.01em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 2px;
 }
 
-.shoe-tile__strip-colorway {
-  font-size: 11px;
-  color: var(--text-secondary);
-  letter-spacing: 0.02em;
-}
-
-.shoe-tile__strip-arrow {
+.shoe-tile__info-name {
+  font-family: var(--f-body);
   font-size: 14px;
-  color: var(--text-secondary);
+  font-weight: 700;
+  color: var(--B);
+  line-height: 1.2;
+}
+
+.shoe-tile__info-colorway {
+  font-size: 11px;
+  color: var(--text-mid);
+  margin-top: 1px;
+}
+
+.shoe-tile__info-arrow {
+  font-size: 13px;
+  color: var(--text-dim);
   transition: color 0.15s, transform 0.15s;
+  flex-shrink: 0;
+  margin-left: 10px;
 }
 
-.shoe-tile:hover .shoe-tile__strip-arrow {
-  color: var(--white);
-  transform: translateX(3px);
-}
+.shoe-tile--selected .shoe-tile__info-arrow { color: var(--R); }
+.shoe-tile:hover .shoe-tile__info-arrow { transform: translateX(3px); color: var(--B); }
 
-/* Red selected bar — bottom edge */
-.shoe-tile__selected-bar {
+/* Red selected bar — bottom */
+.shoe-tile__bar {
   height: 3px;
-  background: var(--puma-red);
+  background: var(--R);
   flex-shrink: 0;
 }
 
 /* ═══════════════════════════════════════════════════════
-   DETAIL PANEL — EDITORIAL PRODUCT VIEW
+   DETAIL PANEL — editorial product view
 ═══════════════════════════════════════════════════════ */
 
 .detail {
@@ -531,163 +468,141 @@
 }
 
 .detail--empty {
-  padding: 40px 28px;
-  color: var(--text-secondary);
+  padding: 40px 24px;
+  color: var(--text-dim);
   font-size: 13px;
 }
 
-/* ── Hero ── */
-
+/* Hero */
 .detail__hero {
   position: relative;
   flex-shrink: 0;
-  height: 280px;
+  height: 260px;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
 }
 
-.detail__hero-inner {
-  position: relative;
-  z-index: 2;
-  padding: 28px;
-  width: 100%;
-}
-
-/* Gradient overlay for readability */
 .detail__hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 20%, rgba(0,0,0,0.75) 100%);
+  background: linear-gradient(to bottom, transparent 20%, rgba(0,0,0,0.70) 100%);
   z-index: 1;
   pointer-events: none;
 }
 
-/* Diagonal accent line — decorative */
-.detail__hero-line {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 3px;
-  height: 100%;
-  z-index: 3;
-  opacity: 0.7;
+.detail__hero-body {
+  position: relative;
+  z-index: 2;
+  padding: 24px;
+  width: 100%;
 }
 
-.detail__hero-category {
+.detail__hero-accent {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 3px;
+  z-index: 3;
+  opacity: 0.8;
+}
+
+.detail__hero-cat {
   display: block;
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .detail__hero-name {
-  font-family: var(--font-display);
-  font-size: clamp(32px, 5vw, 48px);
-  font-weight: 900;
-  color: var(--white);
+  font-family: var(--f-display);
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 700;
+  color: var(--W);
   line-height: 0.95;
   letter-spacing: -0.01em;
   text-transform: uppercase;
-  margin: 0 0 14px;
+  margin: 0 0 10px;
 }
 
 .detail__hero-price {
   display: block;
-  font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 800;
-  color: var(--white);
+  font-family: var(--f-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--W);
   letter-spacing: -0.01em;
 }
 
-/* ── Content ── */
-
-.detail__content {
+/* Content */
+.detail__body {
   flex: 1;
-  padding: 24px 28px;
+  padding: 22px 24px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.08) transparent;
+  background: var(--W);
 }
 
 .detail__mood {
   font-size: 12px;
-  color: var(--text-secondary);
+  color: var(--text-mid);
   line-height: 1.7;
   font-style: italic;
 }
 
 .detail__rule {
-  height: 1px;
-  background: var(--border);
+  border: none;
+  border-top: 1px solid var(--border);
   flex-shrink: 0;
 }
 
-.detail__row-pair {
+.detail__row2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 14px;
 }
 
-.detail__field {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
+.detail__field { display: flex; flex-direction: column; gap: 4px; }
 
 .detail__label {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-dim);
 }
 
-.detail__value {
+.detail__val {
   font-size: 13px;
-  font-weight: 600;
-  color: var(--white);
-  line-height: 1.4;
+  font-weight: 700;
+  color: var(--B);
 }
 
-/* ── Features ── */
-
-.detail__features {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+.detail__features { display: flex; flex-direction: column; gap: 7px; }
 
 .detail__features li {
   position: relative;
   padding-left: 14px;
   font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.45;
+  color: var(--text-mid);
+  line-height: 1.4;
 }
 
 .detail__features li::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 8px;
-  width: 5px;
-  height: 1.5px;
-  background: var(--accent, var(--puma-red));
+  left: 0; top: 8px;
+  width: 5px; height: 1.5px;
+  background: var(--acc, var(--R));
 }
-
-/* ── Audience ── */
 
 .detail__audience {
   font-size: 12px;
-  color: var(--text-secondary);
+  color: var(--text-mid);
   line-height: 1.65;
 }
 
@@ -696,27 +611,22 @@
 ═══════════════════════════════════════════════════════ */
 
 @media (max-width: 1100px) {
-  .app-layout {
-    grid-template-columns: 190px 1fr 270px;
-  }
-  .shoe-tile__visual { height: 260px; }
+  .app-layout { grid-template-columns: 180px 1fr 260px; }
+  .shoe-tile__visual { height: 220px; }
 }
 
-@media (max-width: 880px) {
-  .app-layout {
-    grid-template-columns: 1fr;
-    height: auto;
-    overflow: visible;
-  }
+@media (max-width: 800px) {
+  .app-layout { grid-template-columns: 1fr; height: auto; overflow: visible; }
   .panel { height: auto; overflow-y: visible; }
-  .panel--controller { border-right: none; border-bottom: 1px solid var(--border); }
-  .panel--detail    { border-left: none;  border-top:    1px solid var(--border); }
-  .browser-grid { grid-template-columns: repeat(2, 1fr); }
-  .controller__options { flex-direction: row; flex-wrap: wrap; }
+  .panel--controller { border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .panel--detail { border-top: 1px solid var(--border); }
+  .browser-constellation { grid-template-columns: 1fr 1fr; }
+  .shoe-tile:nth-child(even) { margin-top: 40px; }
+  .ctrl__options { flex-direction: row; flex-wrap: wrap; }
   .ctrl-btn { width: auto; }
-  .detail__hero { height: 220px; }
 }
 
 @media (max-width: 480px) {
-  .browser-grid { grid-template-columns: 1fr; }
+  .browser-constellation { grid-template-columns: 1fr; }
+  .shoe-tile:nth-child(even) { margin-top: 0; }
 }
