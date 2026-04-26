@@ -1,20 +1,25 @@
 // ─────────────────────────────────────────────────────────
 // ShoeController — the filter and sort panel.
 //
-// READS:  filterCategory, sortBy (current state from App)
+// READS:  filterCategory, sortBy (current values from App)
 // WRITES: fires onFilterChange, onSortChange, onReset up
-//         to App when the user takes action
+//         to App when the user interacts
 //
 // This component does NOT update state itself. It reports
-// what the user did and App decides what changes.
+// user actions upward. App decides what changes.
 // ─────────────────────────────────────────────────────────
 
-const CATEGORIES = ['all', 'Lifestyle', 'Basketball', 'Running']
+const CATEGORIES = [
+  { value: 'all', label: 'All' },
+  { value: 'Lifestyle', label: 'Lifestyle' },
+  { value: 'Basketball', label: 'Basketball' },
+  { value: 'Running', label: 'Running' },
+]
 
 const SORT_OPTIONS = [
   { value: 'featured', label: 'Featured' },
-  { value: 'price-asc', label: 'Price: Low to High' },
-  { value: 'price-desc', label: 'Price: High to Low' },
+  { value: 'price-asc', label: 'Low → High' },
+  { value: 'price-desc', label: 'High → Low' },
 ]
 
 export default function ShoeController({
@@ -26,19 +31,23 @@ export default function ShoeController({
 }) {
   return (
     <div className="controller">
-      <h2 className="panel-label">Filter</h2>
 
-      {/* ── Category filter ── */}
+      <div className="controller__brand">
+        <span className="controller__brand-name">PUMA</span>
+        <span className="controller__brand-sub">Explorer</span>
+      </div>
+
+      {/* ── Category ── */}
       <div className="controller__section">
         <span className="controller__section-label">Category</span>
         <div className="controller__filters">
           {CATEGORIES.map(cat => (
             <button
-              key={cat}
-              className={`filter-btn ${filterCategory === cat ? 'filter-btn--active' : ''}`}
-              onClick={() => onFilterChange(cat)}
+              key={cat.value}
+              className={`filter-btn ${filterCategory === cat.value ? 'filter-btn--active' : ''}`}
+              onClick={() => onFilterChange(cat.value)}
             >
-              {cat === 'all' ? 'All' : cat}
+              {cat.label}
             </button>
           ))}
         </div>
@@ -46,7 +55,7 @@ export default function ShoeController({
 
       {/* ── Sort ── */}
       <div className="controller__section">
-        <span className="controller__section-label">Sort by</span>
+        <span className="controller__section-label">Sort</span>
         <div className="controller__filters">
           {SORT_OPTIONS.map(opt => (
             <button
@@ -62,8 +71,14 @@ export default function ShoeController({
 
       {/* ── Reset ── */}
       <button className="reset-btn" onClick={onReset}>
-        Reset
+        Reset All
       </button>
+
+      {/* ── Assignment architecture note ── */}
+      <div className="controller__note">
+        <p>State lives in App.jsx. Filters pass changes up via callbacks.</p>
+      </div>
+
     </div>
   )
 }

@@ -51,4 +51,32 @@
 
 ---
 
+## Session 3 — 2026-04-26
+
+### What we did
+- Built full React app (App.jsx, ShoeBrowser.jsx, ShoeDetail.jsx, ShoeController.jsx, App.css)
+- Redesigned UI from flat card layout to premium dark product showcase
+
+### Key decisions
+- Dark background (--grey-900 / black) throughout — feels premium, not generic
+- Typographic wordmarks as shoe hero visuals (no images needed)
+- Each category has its own gradient palette (Lifestyle: warm brown, Basketball: dark blue, Running: dark green)
+- Hover is CSS-only (transform + shadow) — clearly documented in code comments
+- Click-to-select is the real state interaction — fires up to App, flows back down as props
+- ShoeDetail has a tall hero section with category gradient + large name overlay
+- Red accent (#ff3a00) used for selected states, features list, and brand identity
+- Controller has dark sidebar with brand lockup at top
+
+### Records of Resistance (for assignment documentation)
+- Kept hover as pure CSS — resisted adding useState for hover effect
+- No useContext or Redux — useState + props is sufficient for this component tree
+- No routing added — single page only as per Design Intent
+
+### Next steps
+- Test all interactions in browser
+- Consider adding real shoe images if available
+- Deploy to GitHub Pages
+
+---
+
 <!-- New sessions will be appended below -->

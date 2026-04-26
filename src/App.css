@@ -1,12 +1,12 @@
 /* ═══════════════════════════════════════════════════════
-   APP LAYOUT
+   APP SHELL
 ═══════════════════════════════════════════════════════ */
 
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: var(--grey-100);
+  background: var(--grey-900);
 }
 
 /* ── Header ─────────────────────────────────────────── */
@@ -14,40 +14,41 @@
 .app-header {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 18px 32px;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 52px;
   background: var(--black);
-  color: var(--white);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   position: sticky;
   top: 0;
   z-index: 100;
+  flex-shrink: 0;
 }
 
 .app-header__brand {
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--white);
 }
 
 .app-header__title {
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.08em;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--grey-500);
+  color: var(--grey-600);
 }
 
 /* ── Three-panel layout ─────────────────────────────── */
 
 .app-layout {
   display: grid;
-  grid-template-columns: 200px 1fr 280px;
-  gap: 0;
+  grid-template-columns: 220px 1fr 300px;
   flex: 1;
-  min-height: 0;
-  height: calc(100vh - 57px);
+  height: calc(100vh - 52px);
+  overflow: hidden;
 }
 
 /* ── Panel base ─────────────────────────────────────── */
@@ -55,20 +56,22 @@
 .panel {
   overflow-y: auto;
   height: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
 }
 
 .panel--controller {
-  background: var(--white);
-  border-right: 1px solid var(--grey-200);
+  background: var(--black);
+  border-right: 1px solid rgba(255,255,255,0.06);
 }
 
 .panel--browser {
-  background: var(--grey-100);
+  background: var(--grey-900);
 }
 
 .panel--detail {
-  background: var(--white);
-  border-left: 1px solid var(--grey-200);
+  background: var(--grey-900);
+  border-left: 1px solid rgba(255,255,255,0.06);
 }
 
 /* ── Shared panel label ─────────────────────────────── */
@@ -76,9 +79,9 @@
 .panel-label {
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--grey-500);
+  color: var(--grey-600);
   margin-bottom: 20px;
 }
 
@@ -87,79 +90,131 @@
 ═══════════════════════════════════════════════════════ */
 
 .controller {
-  padding: 28px 20px;
+  padding: 32px 24px;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 36px;
+  min-height: 100%;
 }
+
+/* ── Brand lockup in sidebar ── */
+
+.controller__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.controller__brand-name {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1;
+}
+
+.controller__brand-sub {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+/* ── Filter sections ── */
 
 .controller__section {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .controller__section-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--grey-700);
+  color: var(--grey-600);
 }
 
 .controller__filters {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 2px;
 }
+
+/* ── Filter buttons ── */
 
 .filter-btn {
   width: 100%;
   text-align: left;
-  padding: 9px 12px;
-  border-radius: 6px;
+  padding: 10px 14px;
+  border-radius: 4px;
   font-size: 13px;
   font-weight: 500;
-  color: var(--grey-700);
+  color: var(--grey-400);
   background: transparent;
   border: 1px solid transparent;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition: all 0.15s ease;
+  letter-spacing: 0.01em;
 }
 
 .filter-btn:hover {
-  background: var(--grey-100);
-  color: var(--black);
+  color: var(--white);
+  background: rgba(255,255,255,0.05);
 }
 
 .filter-btn--active {
-  background: var(--black);
   color: var(--white);
-  border-color: var(--black);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.12);
+  font-weight: 700;
 }
 
-.filter-btn--active:hover {
-  background: var(--grey-900);
-  color: var(--white);
+.filter-btn--active::before {
+  content: '▸ ';
+  color: var(--red);
+  font-size: 10px;
 }
+
+/* ── Reset button ── */
 
 .reset-btn {
   width: 100%;
-  padding: 10px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  padding: 11px 14px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--grey-500);
-  border: 1px solid var(--grey-200);
+  color: var(--grey-600);
+  border: 1px solid rgba(255,255,255,0.08);
   background: transparent;
-  transition: all 0.15s;
-  margin-top: auto;
+  transition: all 0.15s ease;
 }
 
 .reset-btn:hover {
-  border-color: var(--grey-700);
-  color: var(--grey-900);
+  color: var(--white);
+  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.04);
+}
+
+/* ── Architecture note ── */
+
+.controller__note {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.controller__note p {
+  font-size: 10px;
+  color: rgba(255,255,255,0.2);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -167,117 +222,206 @@
 ═══════════════════════════════════════════════════════ */
 
 .browser {
-  padding: 28px 24px;
+  padding: 32px 28px;
+}
+
+.browser-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.browser-header__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--grey-600);
+}
+
+.browser-header__count {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--grey-600);
+  letter-spacing: 0.04em;
 }
 
 .browser-empty {
-  padding: 40px 24px;
-  color: var(--grey-500);
+  padding: 60px 28px;
+  color: var(--grey-600);
   font-size: 14px;
 }
+
+/* ── Shoe tile grid ── */
 
 .browser-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 16px;
 }
 
-/* ── Shoe card ───────────────────────────────────────── */
+/* ── Shoe tile ───────────────────────────────────────────
+   HOVER: purely visual — CSS transform and shadow.
+          Does NOT read or write React state.
+   CLICK: fires onSelectShoe(id) up to App.jsx,
+          which updates selectedShoeId in shared state.
+          The selected tile then re-renders via props.
+─────────────────────────────────────────────────────── */
 
-.shoe-card {
+.shoe-tile {
   position: relative;
   display: flex;
   flex-direction: column;
-  background: var(--white);
-  border-radius: 10px;
-  border: 2px solid transparent;
+  border-radius: 8px;
   overflow: hidden;
   text-align: left;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.15s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  background: var(--grey-800);
   cursor: pointer;
+
+  /* Hover is CSS-only — no state involved */
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.15s ease;
 }
 
-.shoe-card:hover {
-  transform: translateY(-3px) scale(1.01);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+.shoe-tile:hover {
+  /* Visual depth — purely cosmetic, no state change */
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3);
+  border-color: rgba(255,255,255,0.14);
 }
 
-.shoe-card--selected {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent), 0 4px 16px rgba(255,58,0,0.15);
+/* Selected state — driven by React state from App.jsx */
+.shoe-tile--selected {
+  border-color: var(--red);
+  box-shadow: 0 0 0 1px var(--red), 0 12px 32px rgba(255,58,0,0.2);
 }
 
-.shoe-card--selected:hover {
-  box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(255,58,0,0.2);
+.shoe-tile--selected:hover {
+  box-shadow: 0 0 0 1px var(--red), 0 20px 48px rgba(255,58,0,0.3);
 }
 
-/* ── Card color swatch (visual placeholder for shoe image) */
+/* ── Tile visual area (hero placeholder) ── */
 
-.shoe-card__swatch {
-  height: 120px;
-  background: var(--grey-200);
-  transition: background 0.2s;
-}
-
-.shoe-card__swatch[data-category="Lifestyle"] { background: #e8e0d4; }
-.shoe-card__swatch[data-category="Basketball"] { background: #dce8f5; }
-.shoe-card__swatch[data-category="Running"] { background: #dcf0e0; }
-
-.shoe-card__body {
-  padding: 14px 16px 16px;
+.shoe-tile__visual {
+  position: relative;
+  height: 220px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  flex: 1;
-}
-
-.shoe-card__category {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--grey-500);
-}
-
-.shoe-card__name {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--black);
-  line-height: 1.2;
-  margin: 0;
-}
-
-.shoe-card__footer {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-top: 8px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 24px;
+
+  /* The image scales on hover — CSS only, no state */
+  transition: filter 0.22s ease;
 }
 
-.shoe-card__colorway {
-  font-size: 11px;
-  color: var(--grey-500);
+.shoe-tile:hover .shoe-tile__visual {
+  filter: brightness(1.08);
 }
 
-.shoe-card__price {
+/* Large typographic wordmark acting as the hero visual */
+.shoe-tile__wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+
+  /* Scale on hover — purely visual, CSS only */
+  transition: transform 0.25s ease;
+}
+
+.shoe-tile:hover .shoe-tile__wordmark {
+  transform: scale(1.06);
+}
+
+.shoe-tile__wordmark span {
+  display: block;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.shoe-tile__wordmark span:nth-child(1) {
   font-size: 14px;
-  font-weight: 700;
-  color: var(--black);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  opacity: 0.5;
+  text-transform: uppercase;
 }
 
-.shoe-card__selected-badge {
+.shoe-tile__sport-tag {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: var(--accent);
-  color: var(--white);
+  bottom: 14px;
+  left: 14px;
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 20px;
+  color: rgba(255,255,255,0.35);
+  background: rgba(0,0,0,0.3);
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+
+/* Selected overlay tint */
+.shoe-tile__selected-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,58,0,0.06);
+  pointer-events: none;
+}
+
+/* ── Tile info strip ── */
+
+.shoe-tile__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: rgba(0,0,0,0.3);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.shoe-tile__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.shoe-tile__category {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--grey-600);
+}
+
+.shoe-tile__colorway {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--white);
+  opacity: 0.9;
+}
+
+.shoe-tile__price {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+
+/* Red selected bar at bottom */
+.shoe-tile__selected-bar {
+  height: 3px;
+  background: var(--red);
+  width: 100%;
+  flex-shrink: 0;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -285,126 +429,176 @@
 ═══════════════════════════════════════════════════════ */
 
 .detail {
-  padding: 28px 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .detail--empty {
-  color: var(--grey-500);
-  font-size: 14px;
+  padding: 40px 28px;
+  color: var(--grey-600);
+  font-size: 13px;
 }
 
-/* ── Hero swatch (visual placeholder for product image) */
+/* ── Detail hero ── */
 
 .detail__hero {
-  height: 200px;
-  border-radius: 8px;
-  background: var(--grey-200);
-  margin-bottom: 24px;
-}
-
-.detail__hero[data-category="Lifestyle"] { background: #e8e0d4; }
-.detail__hero[data-category="Basketball"] { background: #dce8f5; }
-.detail__hero[data-category="Running"] { background: #dcf0e0; }
-
-.detail__content {
+  flex-shrink: 0;
+  height: 260px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.detail__hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.6) 100%);
+  pointer-events: none;
+}
+
+.detail__hero-category {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 6px;
+}
+
+.detail__hero-name {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+  margin: 0 0 10px;
+}
+
+.detail__hero-price {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--white);
+  position: relative;
+  z-index: 1;
+  letter-spacing: -0.01em;
+}
+
+/* ── Detail content ── */
+
+.detail__content {
+  flex: 1;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+
+.detail__mood {
+  font-size: 13px;
+  color: var(--grey-400);
+  line-height: 1.65;
+  font-style: italic;
+}
+
+.detail__divider {
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+
+.detail__meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
-.detail__header {
+.detail__meta-item {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--grey-200);
-}
-
-.detail__category {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.detail__name {
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--black);
-  line-height: 1.15;
-  margin: 0;
-}
-
-.detail__price {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--black);
-  margin-top: 4px;
-}
-
-.detail__row {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
 }
 
 .detail__section {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .detail__label {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--grey-500);
+  color: var(--grey-600);
 }
 
 .detail__value {
   font-size: 13px;
-  color: var(--grey-700);
-  line-height: 1.5;
+  font-weight: 600;
+  color: var(--white);
 }
 
-.detail__value--mood {
-  font-style: italic;
-  color: var(--grey-500);
-  font-size: 13px;
-}
+/* ── Features list ── */
 
 .detail__features {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 0;
+  gap: 8px;
 }
 
 .detail__features li {
   font-size: 13px;
-  color: var(--grey-700);
-  padding-left: 14px;
+  color: var(--grey-400);
+  padding-left: 16px;
   position: relative;
+  line-height: 1.4;
 }
 
 .detail__features li::before {
-  content: '—';
+  content: '';
   position: absolute;
   left: 0;
-  color: var(--accent);
-  font-weight: 700;
+  top: 7px;
+  width: 5px;
+  height: 1px;
+  background: var(--red);
+}
+
+/* ── Audience ── */
+
+.detail__audience {
+  font-size: 13px;
+  color: var(--grey-400);
+  line-height: 1.6;
 }
 
 /* ═══════════════════════════════════════════════════════
-   RESPONSIVE — collapse to stacked layout on mobile
+   RESPONSIVE
 ═══════════════════════════════════════════════════════ */
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
+  .app-layout {
+    grid-template-columns: 180px 1fr 260px;
+  }
+}
+
+@media (max-width: 768px) {
   .app-layout {
     grid-template-columns: 1fr;
     height: auto;
+    overflow: visible;
   }
 
   .panel {
@@ -414,12 +608,16 @@
 
   .panel--controller {
     border-right: none;
-    border-bottom: 1px solid var(--grey-200);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
 
   .panel--detail {
     border-left: none;
-    border-top: 1px solid var(--grey-200);
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .controller {
+    gap: 24px;
   }
 
   .controller__filters {
@@ -429,5 +627,14 @@
 
   .filter-btn {
     width: auto;
+    flex: 1;
+  }
+
+  .detail__hero {
+    height: 200px;
+  }
+
+  .detail__hero-name {
+    font-size: 26px;
   }
 }
