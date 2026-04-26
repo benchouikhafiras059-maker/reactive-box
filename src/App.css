@@ -1,0 +1,433 @@
+/* ═══════════════════════════════════════════════════════
+   APP LAYOUT
+═══════════════════════════════════════════════════════ */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--grey-100);
+}
+
+/* ── Header ─────────────────────────────────────────── */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 32px;
+  background: var(--black);
+  color: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.app-header__brand {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.app-header__title {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+}
+
+/* ── Three-panel layout ─────────────────────────────── */
+
+.app-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr 280px;
+  gap: 0;
+  flex: 1;
+  min-height: 0;
+  height: calc(100vh - 57px);
+}
+
+/* ── Panel base ─────────────────────────────────────── */
+
+.panel {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.panel--controller {
+  background: var(--white);
+  border-right: 1px solid var(--grey-200);
+}
+
+.panel--browser {
+  background: var(--grey-100);
+}
+
+.panel--detail {
+  background: var(--white);
+  border-left: 1px solid var(--grey-200);
+}
+
+/* ── Shared panel label ─────────────────────────────── */
+
+.panel-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+  margin-bottom: 20px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   CONTROLLER PANEL
+═══════════════════════════════════════════════════════ */
+
+.controller {
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.controller__section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.controller__section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey-700);
+}
+
+.controller__filters {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-btn {
+  width: 100%;
+  text-align: left;
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--grey-700);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.filter-btn:hover {
+  background: var(--grey-100);
+  color: var(--black);
+}
+
+.filter-btn--active {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+.filter-btn--active:hover {
+  background: var(--grey-900);
+  color: var(--white);
+}
+
+.reset-btn {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+  border: 1px solid var(--grey-200);
+  background: transparent;
+  transition: all 0.15s;
+  margin-top: auto;
+}
+
+.reset-btn:hover {
+  border-color: var(--grey-700);
+  color: var(--grey-900);
+}
+
+/* ═══════════════════════════════════════════════════════
+   BROWSER PANEL
+═══════════════════════════════════════════════════════ */
+
+.browser {
+  padding: 28px 24px;
+}
+
+.browser-empty {
+  padding: 40px 24px;
+  color: var(--grey-500);
+  font-size: 14px;
+}
+
+.browser-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* ── Shoe card ───────────────────────────────────────── */
+
+.shoe-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.15s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  cursor: pointer;
+}
+
+.shoe-card:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.shoe-card--selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 4px 16px rgba(255,58,0,0.15);
+}
+
+.shoe-card--selected:hover {
+  box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(255,58,0,0.2);
+}
+
+/* ── Card color swatch (visual placeholder for shoe image) */
+
+.shoe-card__swatch {
+  height: 120px;
+  background: var(--grey-200);
+  transition: background 0.2s;
+}
+
+.shoe-card__swatch[data-category="Lifestyle"] { background: #e8e0d4; }
+.shoe-card__swatch[data-category="Basketball"] { background: #dce8f5; }
+.shoe-card__swatch[data-category="Running"] { background: #dcf0e0; }
+
+.shoe-card__body {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.shoe-card__category {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+}
+
+.shoe-card__name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.shoe-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.shoe-card__colorway {
+  font-size: 11px;
+  color: var(--grey-500);
+}
+
+.shoe-card__price {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--black);
+}
+
+.shoe-card__selected-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   DETAIL PANEL
+═══════════════════════════════════════════════════════ */
+
+.detail {
+  padding: 28px 24px;
+}
+
+.detail--empty {
+  color: var(--grey-500);
+  font-size: 14px;
+}
+
+/* ── Hero swatch (visual placeholder for product image) */
+
+.detail__hero {
+  height: 200px;
+  border-radius: 8px;
+  background: var(--grey-200);
+  margin-bottom: 24px;
+}
+
+.detail__hero[data-category="Lifestyle"] { background: #e8e0d4; }
+.detail__hero[data-category="Basketball"] { background: #dce8f5; }
+.detail__hero[data-category="Running"] { background: #dcf0e0; }
+
+.detail__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detail__header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--grey-200);
+}
+
+.detail__category {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.detail__name {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--black);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.detail__price {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--black);
+  margin-top: 4px;
+}
+
+.detail__row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.detail__section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+}
+
+.detail__value {
+  font-size: 13px;
+  color: var(--grey-700);
+  line-height: 1.5;
+}
+
+.detail__value--mood {
+  font-style: italic;
+  color: var(--grey-500);
+  font-size: 13px;
+}
+
+.detail__features {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0;
+}
+
+.detail__features li {
+  font-size: 13px;
+  color: var(--grey-700);
+  padding-left: 14px;
+  position: relative;
+}
+
+.detail__features li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE — collapse to stacked layout on mobile
+═══════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .panel {
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .panel--controller {
+    border-right: none;
+    border-bottom: 1px solid var(--grey-200);
+  }
+
+  .panel--detail {
+    border-left: none;
+    border-top: 1px solid var(--grey-200);
+  }
+
+  .controller__filters {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    width: auto;
+  }
+}
