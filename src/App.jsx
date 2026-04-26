@@ -104,7 +104,6 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <span className="app-header__brand">PUMA</span>
         <span className="app-header__title">Shoe Explorer</span>
       </header>
 

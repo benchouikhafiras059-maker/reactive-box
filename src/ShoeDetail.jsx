@@ -1,90 +1,84 @@
 // ─────────────────────────────────────────────────────────
-// ShoeDetail — the editorial information panel.
+// ShoeDetail — editorial product information panel.
 //
 // READS:  selectedShoe (full shoe object, resolved in App)
-// WRITES: nothing — this component is purely read-only.
+// WRITES: nothing — purely read-only.
 //
-// IMPORTANT — how this panel updates:
-//   When a user clicks a shoe in ShoeBrowser, the click
-//   event fires upward to App.jsx, which updates
-//   selectedShoeId in shared state. App then looks up the
-//   full shoe object and passes it DOWN here as the
-//   selectedShoe prop. This panel re-renders automatically
-//   because React re-runs it when its props change.
-//
-//   There is NO local state for the selected shoe here.
-//   This is the "single source of truth" pattern — the
-//   data lives in App, and this panel just displays it.
+// When a shoe is clicked in ShoeBrowser, the event goes
+// UP to App.jsx, which updates selectedShoeId in state.
+// App resolves the full shoe object and passes it DOWN
+// here as selectedShoe. This component re-renders because
+// its props changed — it never manages selection itself.
 // ─────────────────────────────────────────────────────────
 
-const CATEGORY_BG = {
-  Lifestyle: 'linear-gradient(160deg, #1a1a1a 0%, #2e1e10 100%)',
-  Basketball: 'linear-gradient(160deg, #080818 0%, #0d1a33 100%)',
-  Running: 'linear-gradient(160deg, #081008 0%, #0a2a0a 100%)',
-}
-
-const CATEGORY_ACCENT = {
-  Lifestyle: '#c8a882',
-  Basketball: '#6ab0f5',
-  Running: '#6fcf6f',
+const DETAIL_THEME = {
+  Lifestyle:   { gradient: 'linear-gradient(160deg, #1c0800 0%, #0a0602 100%)', accent: '#FF3A00' },
+  Basketball:  { gradient: 'linear-gradient(160deg, #040c1e 0%, #020408 100%)', accent: '#4A9EFF' },
+  Running:     { gradient: 'linear-gradient(160deg, #061006 0%, #020402 100%)', accent: '#C5F135' },
 }
 
 export default function ShoeDetail({ selectedShoe }) {
   if (!selectedShoe) {
     return (
       <div className="detail detail--empty">
-        <p>Select a shoe to see details.</p>
+        <p>Select a shoe to view details.</p>
       </div>
     )
   }
 
-  const heroBg = CATEGORY_BG[selectedShoe.category] || CATEGORY_BG.Lifestyle
-  const accentColor = CATEGORY_ACCENT[selectedShoe.category] || '#ffffff'
+  const theme = DETAIL_THEME[selectedShoe.category] || DETAIL_THEME.Lifestyle
 
   return (
     <div className="detail">
 
-      {/* ── Hero area ── */}
-      <div className="detail__hero" style={{ background: heroBg }}>
-        <span className="detail__hero-category" style={{ color: accentColor }}>
-          {selectedShoe.category}
-        </span>
-        <h2 className="detail__hero-name">{selectedShoe.name}</h2>
-        <span className="detail__hero-price">${selectedShoe.price}</span>
+      {/* ── Hero ── */}
+      <div className="detail__hero" style={{ background: theme.gradient }}>
+        <div className="detail__hero-inner">
+          <span
+            className="detail__hero-category"
+            style={{ color: theme.accent }}
+          >
+            {selectedShoe.category} · {selectedShoe.sport}
+          </span>
+          <h2 className="detail__hero-name">{selectedShoe.name}</h2>
+          <span className="detail__hero-price">${selectedShoe.price}</span>
+        </div>
+        {/* Diagonal accent line */}
+        <div className="detail__hero-line" style={{ background: theme.accent }} />
       </div>
 
-      {/* ── Content ── */}
+      {/* ── Editorial content ── */}
       <div className="detail__content">
 
-        <p className="detail__mood">{selectedShoe.mood}</p>
+        <p className="detail__mood">"{selectedShoe.mood}"</p>
 
-        <div className="detail__divider" />
+        <div className="detail__rule" />
 
-        <div className="detail__meta-grid">
-          <div className="detail__meta-item">
-            <span className="detail__label">Sport</span>
-            <span className="detail__value">{selectedShoe.sport}</span>
-          </div>
-          <div className="detail__meta-item">
+        <div className="detail__row-pair">
+          <div className="detail__field">
             <span className="detail__label">Colorway</span>
             <span className="detail__value">{selectedShoe.colorway}</span>
           </div>
+          <div className="detail__field">
+            <span className="detail__label">Sport</span>
+            <span className="detail__value">{selectedShoe.sport}</span>
+          </div>
         </div>
 
-        <div className="detail__divider" />
+        <div className="detail__rule" />
 
-        <div className="detail__section">
+        <div className="detail__field">
           <span className="detail__label">Features</span>
           <ul className="detail__features">
-            {selectedShoe.features.map((feature, i) => (
-              <li key={i}>{feature}</li>
+            {selectedShoe.features.map((f, i) => (
+              <li key={i} style={{ '--accent': theme.accent }}>{f}</li>
             ))}
           </ul>
         </div>
 
-        <div className="detail__divider" />
+        <div className="detail__rule" />
 
-        <div className="detail__section">
+        <div className="detail__field">
           <span className="detail__label">Made for</span>
           <p className="detail__audience">{selectedShoe.audience}</p>
         </div>

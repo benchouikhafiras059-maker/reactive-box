@@ -5,32 +5,40 @@
 }
 
 :root {
-  --black:   #0a0a0a;
-  --white:   #ffffff;
-  --red:     #ff3a00;
-  --red-dim: rgba(255, 58, 0, 0.12);
+  /* ── Core palette ── */
+  --black:       #000000;
+  --off-black:   #0c0c0c;
+  --surface:     #111111;
+  --surface-2:   #1a1a1a;
+  --border:      rgba(255, 255, 255, 0.07);
+  --border-mid:  rgba(255, 255, 255, 0.12);
+  --white:       #ffffff;
+  --off-white:   #f0ece6;
 
-  --grey-50:  #f7f7f7;
-  --grey-100: #efefef;
-  --grey-200: #dcdcdc;
-  --grey-400: #aaaaaa;
-  --grey-600: #666666;
-  --grey-800: #222222;
-  --grey-900: #141414;
+  --red:         #FF3A00;   /* PUMA red-orange */
+  --red-glow:    rgba(255, 58, 0, 0.25);
+  --red-dim:     rgba(255, 58, 0, 0.08);
 
-  --font: 'Inter', system-ui, -apple-system, sans-serif;
+  --text-primary:   #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.5);
+  --text-muted:     rgba(255, 255, 255, 0.25);
 
-  font-family: var(--font);
+  /* ── Typography ── */
+  --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body:    'Barlow', system-ui, -apple-system, sans-serif;
+
+  font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.5;
-  color: var(--grey-800);
-  background: var(--grey-900);
+  color: var(--text-primary);
+  background: var(--black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   min-height: 100vh;
+  background: var(--black);
 }
 
 #root {
@@ -44,6 +52,4 @@ button {
   font-family: inherit;
 }
 
-ul {
-  list-style: none;
-}
+ul { list-style: none; }
