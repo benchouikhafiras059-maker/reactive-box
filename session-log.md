@@ -28,4 +28,27 @@
 
 ---
 
+## Session 2 — 2026-04-26
+
+### What we did
+- Student defined project concept: PUMA Shoe Explorer
+- Wrote full Design Intent document → saved as `design-intent.md`
+
+### Key decisions made
+- **Domain:** PUMA product discovery system — chosen because student is working on a PUMA UX project and wants to explore interactive product discovery vs. static grids
+- **4 shoes in data model:** Speedcat OG (Lifestyle, $100), MB.04 (Basketball, $130), Deviate NITRO 3 (Running, $160), Palermo (Lifestyle, $90)
+- **State shape:** `{ selectedShoeId, filterCategory, sortBy, shoes[] }`
+- **Browser:** card grid, click fires `onSelectShoe(id)` up to App, hover is CSS only
+- **Detail View:** read-only, receives resolved shoe object as prop
+- **Controller:** category filter + sort control + reset button, fires callbacks up to App
+- **Visual mood:** clean, sporty, editorial, card-based, strong typography, premium feel
+- **Experience goal:** browse → select → understand. Not an e-commerce site.
+
+### Next steps
+- Set up React/Vite project scaffold
+- Build state model in App
+- Build Browser component first (render from mock data)
+
+---
+
 <!-- New sessions will be appended below -->
