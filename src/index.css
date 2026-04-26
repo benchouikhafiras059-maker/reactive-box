@@ -1,3 +1,40 @@
+/* ── FF DIN for PUMA — official brand typeface ── */
+@font-face {
+  font-family: 'FFDINforPUMA';
+  src: url('/fonts/FFDINforPUMA-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'FFDINforPUMA';
+  src: url('/fonts/FFDINforPUMA-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'FFDINforPUMA';
+  src: url('/fonts/FFDINforPUMA-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'FFDINforPUMA';
+  src: url('/fonts/FFDINforPUMA-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'FFDINforPUMACondensed';
+  src: url('/fonts/FFDINforPUMA-CondBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -5,40 +42,47 @@
 }
 
 :root {
-  /* ── Core palette ── */
-  --black:       #000000;
-  --off-black:   #0c0c0c;
-  --surface:     #111111;
-  --surface-2:   #1a1a1a;
-  --border:      rgba(255, 255, 255, 0.07);
-  --border-mid:  rgba(255, 255, 255, 0.12);
-  --white:       #ffffff;
-  --off-white:   #f0ece6;
+  /* ── Official PUMA Brand Colors ─────────────────── */
+  --puma-red:      #AF1E2D;   /* Primary brand red */
+  --puma-black:    #000000;   /* PUMA Black */
+  --puma-white:    #FFFFFF;   /* PUMA White */
+  --puma-green:    #1A5C2E;   /* Sportstyle only */
 
-  --red:         #FF3A00;   /* PUMA red-orange */
-  --red-glow:    rgba(255, 58, 0, 0.25);
-  --red-dim:     rgba(255, 58, 0, 0.08);
+  /* ── Secondary — Neutral Cool Grays ─────────────── */
+  --cool-gray-9:   #76767A;
+  --cool-gray-7:   #97999B;
+  --cool-gray-3:   #C8C9C7;
+  --cool-gray-1:   #D9D9D6;
+
+  /* ── UI surface tokens ───────────────────────────── */
+  --surface:       #111111;
+  --surface-2:     #1a1a1a;
+  --border:        rgba(255, 255, 255, 0.07);
+  --border-mid:    rgba(255, 255, 255, 0.13);
+
+  --red-glow:      rgba(175, 30, 45, 0.30);
+  --red-dim:       rgba(175, 30, 45, 0.08);
 
   --text-primary:   #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.5);
-  --text-muted:     rgba(255, 255, 255, 0.25);
+  --text-secondary: rgba(255, 255, 255, 0.50);
+  --text-muted:     rgba(255, 255, 255, 0.28);
 
-  /* ── Typography ── */
-  --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
-  --font-body:    'Barlow', system-ui, -apple-system, sans-serif;
+  /* ── Official PUMA typography ────────────────────── */
+  --font-display:  'FFDINforPUMACondensed', 'Arial Narrow', sans-serif;
+  --font-body:     'FFDINforPUMA', 'Arial', sans-serif;
 
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.5;
   color: var(--text-primary);
-  background: var(--black);
+  background: var(--puma-black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   min-height: 100vh;
-  background: var(--black);
+  background: var(--puma-black);
 }
 
 #root {

@@ -12,9 +12,9 @@
 // ─────────────────────────────────────────────────────────
 
 const DETAIL_THEME = {
-  Lifestyle:   { gradient: 'linear-gradient(160deg, #1c0800 0%, #0a0602 100%)', accent: '#FF3A00' },
-  Basketball:  { gradient: 'linear-gradient(160deg, #040c1e 0%, #020408 100%)', accent: '#4A9EFF' },
-  Running:     { gradient: 'linear-gradient(160deg, #061006 0%, #020402 100%)', accent: '#C5F135' },
+  Lifestyle:   { gradient: 'linear-gradient(160deg, #200508 0%, #0a0202 100%)', accent: '#AF1E2D' },  // PUMA Red
+  Basketball:  { gradient: 'linear-gradient(160deg, #040c1e 0%, #020408 100%)', accent: '#97999B' },  // Cool Gray 7C
+  Running:     { gradient: 'linear-gradient(160deg, #061206 0%, #020402 100%)', accent: '#1A5C2E' },  // PUMA Green
 }
 
 export default function ShoeDetail({ selectedShoe }) {

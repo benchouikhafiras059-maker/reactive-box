@@ -100,7 +100,7 @@
   font-weight: 600;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--red);
+  color: var(--puma-red);
   margin-top: 6px;
 }
 
@@ -165,7 +165,7 @@
   transform: translateY(-50%);
   width: 2px;
   height: 60%;
-  background: var(--red);
+  background: var(--puma-red);
   border-radius: 0 2px 2px 0;
 }
 
@@ -286,15 +286,15 @@
 
 /* ── Selected state — driven by React props from App ── */
 .shoe-tile--selected {
-  border-color: var(--red);
+  border-color: var(--puma-red);
   box-shadow:
-    0 0 0 1px var(--red),
+    0 0 0 1px var(--puma-red),
     0 0 32px var(--red-glow);
 }
 
 .shoe-tile--selected:hover {
   box-shadow:
-    0 0 0 1px var(--red),
+    0 0 0 1px var(--puma-red),
     0 24px 48px rgba(0, 0, 0, 0.7),
     0 0 48px var(--red-glow);
 }
@@ -330,24 +330,24 @@
 }
 
 .shoe-tile__texture[data-pattern="court"] {
-  /* Court horizontal lines */
+  /* Court horizontal lines — Cool Gray 7C tint */
   background: repeating-linear-gradient(
     0deg,
     transparent 0px,
     transparent 28px,
-    rgba(74,158,255,0.04) 28px,
-    rgba(74,158,255,0.04) 29px
+    rgba(151,153,155,0.05) 28px,
+    rgba(151,153,155,0.05) 29px
   );
 }
 
 .shoe-tile__texture[data-pattern="speed"] {
-  /* Speed diagonal lines */
+  /* Speed diagonal lines — PUMA Green tint */
   background: repeating-linear-gradient(
     65deg,
     transparent 0px,
     transparent 18px,
-    rgba(197,241,53,0.035) 18px,
-    rgba(197,241,53,0.035) 19px
+    rgba(26,92,46,0.08) 18px,
+    rgba(26,92,46,0.08) 19px
   );
 }
 
@@ -516,7 +516,7 @@
 /* Red selected bar — bottom edge */
 .shoe-tile__selected-bar {
   height: 3px;
-  background: var(--red);
+  background: var(--puma-red);
   flex-shrink: 0;
 }
 
@@ -680,7 +680,7 @@
   top: 8px;
   width: 5px;
   height: 1.5px;
-  background: var(--accent, var(--red));
+  background: var(--accent, var(--puma-red));
 }
 
 /* ── Audience ── */

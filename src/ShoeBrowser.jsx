@@ -25,30 +25,30 @@
 // Per-shoe visual identity — gradient, accent, pattern
 const SHOE_THEME = {
   'shoe-1': {
-    // Speedcat OG — Motorsport heritage, clean and iconic
-    gradient: 'linear-gradient(150deg, #0e0e0e 0%, #1c0800 55%, #0a0a0a 100%)',
-    accent: '#FF3A00',
+    // Speedcat OG — Motorsport heritage. PUMA Red as the hero accent.
+    gradient: 'linear-gradient(150deg, #0e0e0e 0%, #200508 55%, #0a0a0a 100%)',
+    accent: '#AF1E2D',   // official PUMA Red
     label: 'Motorsport',
     pattern: 'motorsport',
   },
   'shoe-2': {
-    // MB.04 — Basketball, bold, expressive
+    // MB.04 — Basketball. Cool Gray 7C as base, deep blue hero.
     gradient: 'linear-gradient(150deg, #04040f 0%, #081428 55%, #050510 100%)',
-    accent: '#4A9EFF',
+    accent: '#97999B',   // Cool Gray 7C — neutral contrast on dark
     label: 'Basketball',
     pattern: 'court',
   },
   'shoe-3': {
-    // Deviate NITRO 3 — Running, technical, fast
+    // Deviate NITRO 3 — Running. PUMA Green (Sportstyle) as accent.
     gradient: 'linear-gradient(150deg, #040f04 0%, #091a09 55%, #050d05 100%)',
-    accent: '#C5F135',
+    accent: '#1A5C2E',   // official PUMA Green (Sportstyle)
     label: 'Running',
     pattern: 'speed',
   },
   'shoe-4': {
-    // Palermo — Streetwear, terrace, casual classic
+    // Palermo — Streetwear. Cool Gray 3C — warm and understated.
     gradient: 'linear-gradient(150deg, #0f0d09 0%, #1c170d 55%, #0c0a07 100%)',
-    accent: '#D9C9A8',
+    accent: '#C8C9C7',   // Cool Gray 3C
     label: 'Streetwear',
     pattern: 'terrace',
   },
