@@ -1,24 +1,26 @@
 // ─────────────────────────────────────────────────────────
 // ShoeController — filter and sort panel.
 //
-// READS:  filterCategory, sortBy from App (via props)
-// WRITES: fires callbacks up to App on interaction
+// Assignment state machine role:
+//   READS:  filterCategory, sortBy (from App via props)
+//   WRITES: fires callbacks UP to App on every interaction
 //
-// This component never updates state itself. It reports
-// user actions upward. App.jsx is the decision-maker.
+// This component never calls setState. It reports user
+// actions upward. App.jsx decides what changes.
 // ─────────────────────────────────────────────────────────
 
 const CATEGORIES = [
-  { value: 'all',        label: 'All' },
-  { value: 'Lifestyle',  label: 'Lifestyle' },
-  { value: 'Basketball', label: 'Basketball' },
-  { value: 'Running',    label: 'Running' },
+  { value: 'all',        label: 'All Models' },
+  { value: 'Motorsport', label: 'Motorsport'  },
+  { value: 'Lifestyle',  label: 'Lifestyle'   },
+  { value: 'Basketball', label: 'Basketball'  },
+  { value: 'Running',    label: 'Running'     },
 ]
 
 const SORT_OPTIONS = [
-  { value: 'featured',   label: 'Featured' },
-  { value: 'price-asc',  label: 'Low → High' },
-  { value: 'price-desc', label: 'High → Low' },
+  { value: 'featured',   label: 'Featured'       },
+  { value: 'price-asc',  label: 'Price ↑ Low'    },
+  { value: 'price-desc', label: 'Price ↓ High'   },
 ]
 
 export default function ShoeController({
@@ -28,13 +30,15 @@ export default function ShoeController({
   return (
     <div className="ctrl">
 
+      {/* Brand mark */}
       <div className="ctrl__brand">
         <span className="ctrl__brand-name">PUMA</span>
-        <span className="ctrl__brand-sub">Shoe Explorer</span>
+        <span className="ctrl__brand-sub">Select</span>
       </div>
 
-      <div className="ctrl__group">
-        <span className="ctrl__group-label">Category</span>
+      {/* Category */}
+      <div className="ctrl__section">
+        <span className="ctrl__section-label">Category</span>
         <div className="ctrl__options">
           {CATEGORIES.map(c => (
             <button
@@ -48,8 +52,9 @@ export default function ShoeController({
         </div>
       </div>
 
-      <div className="ctrl__group">
-        <span className="ctrl__group-label">Sort</span>
+      {/* Sort */}
+      <div className="ctrl__section">
+        <span className="ctrl__section-label">Sort</span>
         <div className="ctrl__options">
           {SORT_OPTIONS.map(o => (
             <button
@@ -63,10 +68,12 @@ export default function ShoeController({
         </div>
       </div>
 
-      <button className="ctrl-reset" onClick={onReset}>Reset</button>
+      <button className="ctrl-reset" onClick={onReset}>
+        ↺ Reset
+      </button>
 
       <div className="ctrl__note">
-        <p>State lives in App.jsx<br />Props down · Events up</p>
+        <p>State → App.jsx<br />Props ↓ · Events ↑</p>
       </div>
 
     </div>
