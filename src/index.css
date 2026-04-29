@@ -1,80 +1,38 @@
-/* ── FF DIN for PUMA — official brand typeface ── */
-@font-face {
-  font-family: 'FFDIN';
-  src: url('/fonts/FFDINforPUMA-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'FFDIN';
-  src: url('/fonts/FFDINforPUMA-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'FFDIN';
-  src: url('/fonts/FFDINforPUMA-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'FFDIN';
-  src: url('/fonts/FFDINforPUMA-Black.ttf') format('truetype');
-  font-weight: 900;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'FFDINCond';
-  src: url('/fonts/FFDINforPUMA-CondBold.ttf') format('truetype');
-  font-weight: 700;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* ── Official PUMA Brand Colors ── */
-  --R: #AF1E2D;          /* PUMA Red     */
-  --B: #000000;          /* PUMA Black   */
-  --W: #FFFFFF;          /* PUMA White   */
-  --G: #1A5C2E;          /* PUMA Green (Sportstyle) */
+  --bg:         #F8F6F3;
+  --panel:      #FFFFFF;
+  --border:     #E8E3DC;
 
-  /* ── PUMA Cool Grays ── */
-  --CG9: #76767A;
-  --CG7: #97999B;
-  --CG3: #C8C9C7;
-  --CG1: #D9D9D6;
+  --green:      #16A34A;
+  --green-dark: #15803D;
+  --green-soft: #F0FDF4;
+  --green-mid:  #86EFAC;
 
-  /* ── UI tokens ── */
-  --bg:          #FFFFFF;
-  --bg-soft:     #F5F5F5;
-  --surface:     #FFFFFF;
-  --border:      #E8E8E8;
-  --border-dark: #D0D0D0;
+  --clay:       #EA7C3F;
+  --clay-soft:  #FFF7ED;
+  --clay-mid:   #FED7AA;
 
-  --text:        #000000;
-  --text-mid:    #555555;
-  --text-dim:    #999999;
+  --text:       #1C1917;
+  --text-mid:   #78716C;
+  --text-light: #A8A29E;
 
-  --red-glow:    rgba(175, 30, 45, 0.18);
+  --shadow-sm: 0 1px 3px rgba(28,25,23,0.07), 0 1px 2px rgba(28,25,23,0.04);
+  --shadow-md: 0 4px 16px rgba(28,25,23,0.08), 0 2px 6px rgba(28,25,23,0.04);
+  --shadow-lg: 0 8px 32px rgba(28,25,23,0.10), 0 4px 12px rgba(28,25,23,0.06);
 
-  /* ── Typography ── */
-  --f-display: 'FFDINCond', 'Arial Narrow', sans-serif;
-  --f-body:    'FFDIN', 'Arial', sans-serif;
-
-  font-family: var(--f-body);
+  font-family: 'Manrope', 'Inter', system-ui, sans-serif;
   font-size: 14px;
   line-height: 1.5;
   color: var(--text);
-  background: var(--W);
   -webkit-font-smoothing: antialiased;
 }
 
-body { min-height: 100vh; background: var(--W); }
-#root { min-height: 100vh; }
-button { cursor: pointer; border: none; background: none; font-family: inherit; }
-ul { list-style: none; }
+body   { min-height: 100vh; background: var(--bg); overflow: hidden; }
+#root  { height: 100vh; display: flex; flex-direction: column; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; color: inherit; }
+ul     { list-style: none; }
+input  { font-family: inherit; }
