@@ -3,6 +3,8 @@
 **Course:** AI 201, Spring 2026 — Professor Tim Lindsey
 **Project:** P2 — Three-Panel React State Machine
 
+🔗 **Live Site:** [benchouikhafiras059-maker.github.io/reactive-box](https://benchouikhafiras059-maker.github.io/reactive-box/)
+
 ---
 
 ## What This Is
