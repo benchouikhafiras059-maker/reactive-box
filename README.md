@@ -191,6 +191,62 @@ flowchart TD
 
 ---
 
+## Critical Reflection
+
+### 1. Can I defend this?
+Yes — the structure and interactions are intentional and tied directly to the assignment's state-driven system.
+
+I chose a match discovery flow because it clearly demonstrates how selecting an item (match) updates the Detail View, and how filters dynamically reshape the Browser. I can explain why state is centralized in App.jsx, how `selectedMatchId` drives the UI, and how actions like "Request to Join" or status updates propagate across all panels. Every interaction supports clarity and immediate feedback.
+
+---
+
+### 2. Is this mine?
+Yes — the concept, feature direction, and interaction design are mine.
+
+I defined the idea of focusing on competitive match opportunities instead of generic booking, and I designed the flow from browsing → selecting → requesting → confirmed experience. AI was used to accelerate implementation and styling, but I made decisions about:
+- what features to include (filters, onboarding, request lifecycle)
+- how the system behaves
+- what interactions matter for the user
+
+---
+
+### 3. Did I verify?
+Partially, and this is an area I could improve.
+
+I verified core interactions:
+- selecting a match updates the Detail View
+- filters correctly update the Browser
+- request states (sent, confirmed, declined) propagate across panels
+
+However, I did not fully test edge cases (e.g., empty states, conflicting filters, multiple rapid interactions). If I had more time, I would test more scenarios and refine transitions to ensure consistency under all conditions.
+
+---
+
+### 4. Would I teach this?
+Yes — I understand the system well enough to explain both the design and the React architecture.
+
+I can teach:
+- how single source of truth works in App.jsx
+- how props down / events up connects the three panels
+- how user actions (click, filter, request) update shared state
+- how UI feedback (status badges, detail updates) is driven by state changes
+
+I can also explain the UX decisions behind simplifying the flow to focus on discovery and selection.
+
+---
+
+### 5. Is my documentation honest?
+Yes — I documented how I used AI to assist with building components, styling, and structuring the code, and where I made changes.
+
+However, I recognize that my earlier reflections were too superficial. In this version, I clarified:
+- what decisions were mine
+- how AI contributed
+- what I verified vs. what I did not fully test
+
+This documentation more accurately reflects my process and understanding of the project.
+
+---
+
 ## How to Run
 
 ```bash
